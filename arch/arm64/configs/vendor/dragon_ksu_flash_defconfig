@@ -3,6 +3,8 @@
 # Linux/arm64 4.14.285 Kernel Configuration
 #
 
+CONFIG_NOMOUNT=y
+
 #CASS
 CONFIG_SCHED_CASS=y
 
