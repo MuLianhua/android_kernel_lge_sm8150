@@ -724,14 +724,14 @@ static inline void pm_apply_hide_errno(struct pt_regs *regs)
 		case WRITE_OP_PASSTHROUGH:
 			return;
 		case WRITE_OP_EACCES:
-			regs_set_return_value(regs, -EACCES);
+			regs->regs[0] = -EACCES;
 			return;
 		case WRITE_OP_ENOENT:
 			break;
 		}
 	}
 
-	regs_set_return_value(regs, -ENOENT);
+	regs->regs[0] = -ENOENT;
 }
 
 static int perm_inode_entry(struct kretprobe_instance *ri, struct pt_regs *regs)
@@ -1017,7 +1017,7 @@ static int sys_path_exit(struct kretprobe_instance *ri, struct pt_regs *regs)
 		pm_invoke_close_fd((unsigned int)ret);
 	}
 
-	regs_set_return_value(regs, d->err);
+	regs->regs[0] = d->err;
 	return 0;
 }
 
@@ -1318,7 +1318,7 @@ static int sys_write_exit(struct kretprobe_instance *ri, struct pt_regs *regs)
 	struct write_syscall_data *d = (struct write_syscall_data *)ri->data;
 
 	if (d->matched)
-		regs_set_return_value(regs, d->err);
+		regs->regs[0] = d->err;
 	return 0;
 }
 
@@ -1477,7 +1477,7 @@ static int getdents_exit(struct kretprobe_instance *ri, struct pt_regs *regs)
 
 	if (modified) {
 		if (copy_to_user(d->dirent, kbuf, new_len))
-			pr_warn_ratelimited(PM_LOG_PREFIX
+			pr_warn(PM_LOG_PREFIX
 					    "copy_to_user failed, directory may leak\n");
 		else
 			regs->regs[0] = new_len;
