@@ -1,3 +1,4 @@
+#include <linux/kallsyms.h>
 // SPDX-License-Identifier: GPL-2.0
 /*
  * PathMask - selective path hiding demo for Android arm64 / GKI.

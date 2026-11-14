@@ -1,3 +1,4 @@
+#include <linux/kallsyms.h>
 // SPDX-License-Identifier: GPL-2.0
 /*
  * procguard - neutralize the AID_READPROC (gid 3009) /proc bypass for
