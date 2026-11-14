@@ -1,0 +1,5 @@
+config PATHMASK
+    bool "PathMask VFS path masking"
+    default y
+    help
+      Android LKM path masking module.
