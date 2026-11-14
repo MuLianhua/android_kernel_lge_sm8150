@@ -26,7 +26,7 @@
 #include <asm/syscall.h>
 #include <asm/unistd.h>
 
-// #include "core.h"
+#include "core.h"
 #include "hint.h"
 
 #define PM_LOG_PREFIX "pathmask: "
