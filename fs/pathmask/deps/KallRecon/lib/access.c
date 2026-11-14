@@ -17,7 +17,7 @@ int kl_addr_mode = KS_MODE_RB;
 
 int safe_read(void *dst, const void *src, size_t sz)
 {
-	return copy_from_kernel_nofault(dst, src, sz);
+	return probe_kernel_read(dst, src, sz);
 }
 
 /* empirically pick the address formula: try candidates in priority
