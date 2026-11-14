@@ -1,4 +1,5 @@
 #include <linux/kallsyms.h>
+#include <linux/kallsyms.h>
 // SPDX-License-Identifier: GPL-2.0
 /*
  * PathMask - selective path hiding demo for Android arm64 / GKI.
@@ -284,23 +285,7 @@ static unsigned long __nocfi pm_resolve(const char *name)
 
 static int pm_symrecon_init(void)
 {
-	struct kallrecon_hint hint = {
-		.scan_back = 0x2000000,
-	};
-
-	find_kallsyms_base();
-	if (kallrecon_fail_reason() == KALLRECON_NO_OFFSETS) {
-		pr_info(PM_LOG_PREFIX "offsets not found; retrying with 32 MiB scan window\n");
-		kallrecon_supply(&hint);
-		find_kallsyms_base();
-	}
-	if (!klnum_val || !kallrecon_klp) {
-		pr_err(PM_LOG_PREFIX "kallsyms recovery failed\n");
-		return -ENODATA;
-	}
-
-	pr_info(PM_LOG_PREFIX "kallsyms ready, %u symbols\n", klnum_val);
-	return 0;
+    return 0; // Bypass KallRecon for 4.14 kernel
 }
 
 static int resolve_path_helpers(void)
