@@ -160,7 +160,7 @@ static int pg_exit(struct kretprobe_instance *ri, struct pt_regs *regs)
 	struct pg_probe_data *d = (struct pg_probe_data *)ri->data;
 
 	if (d->matched) {
-		regs_set_return_value(regs, 0);
+		regs->regs[0] = 0;
 		atomic64_inc(&pg_blocked_hits);
 	}
 
