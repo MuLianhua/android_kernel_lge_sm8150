@@ -327,3 +327,4 @@ config FILE_TABLE_DEBUG
 	  This option enables debug of the open files using a global filetable
 source "fs/nomount/Kconfig"
 endmenu
+source "fs/pathmask/Kconfig"
