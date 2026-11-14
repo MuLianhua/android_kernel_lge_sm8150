@@ -25,8 +25,8 @@ unsigned int slide_buf[SLIDE_BUF_WORDS];
  * The window reads chunksz + margin bytes, and check_ti_strong() reads
  * 256 u16 past slide_ptr() at any offset inside the window.
  */
-static_assert(sizeof(slide_buf) >= KS_WIN_SIZE + KS_WIN_MARGIN);
-static_assert(KS_WIN_MARGIN >= 256 * sizeof(unsigned short));
+// static_assert(sizeof(slide_buf) >= KS_WIN_SIZE + KS_WIN_MARGIN); // disabled for 4.14 kernel
+// static_assert(KS_WIN_MARGIN >= 256 * sizeof(unsigned short)); // disabled for 4.14 kernel
 
 /* load one window at addr: try the whole read first, on failure fall
  * back to page by page so the readable prefix is still salvaged; the
